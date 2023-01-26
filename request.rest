@@ -1,0 +1,41 @@
+### test
+GET http://localhost:3003/ping
+
+### create user
+POST http://localhost:3003/user/create
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "Test9@gmail.com",
+  "password": "12345636"
+}
+
+### create post
+POST http://localhost:3003/post/create
+Content-Type: application/json
+
+{
+  "photo": "https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+  "description": "Teste10",
+  "type": "normal",
+  "author_id": "f50ee0d5-df2d-49f3-935c-b7b6b30a8044"
+}
+
+### get by id
+GET http://localhost:3003/post/f518380d-0181-4d9d-a6cb-1c496d78ac73
+
+### make a friend
+POST http://localhost:3003/user/friend/
+Content-Type: application/json
+
+{
+  "user_id": "23cde120-5caf-4f8c-97ac-cda0684b477c",
+  "friend_id": "c737cc7a-75c0-4054-982c-bc9faa3625fa"
+}
+
+### undo a friend
+DELETE http://localhost:3003/user/friend/941a40c7-24fc-4512-a1cc-d3e1dad99669
+
+### get posts by friends
+GET http://localhost:3003/user/feed/23cde120-5caf-4f8c-97ac-cda0684b477c
