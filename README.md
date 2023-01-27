@@ -129,3 +129,5 @@ A documentação da API está disponível no Postman: https://documenter.getpost
 - Dotenv
 - UUID
 - Ts-node-dev
+
+
