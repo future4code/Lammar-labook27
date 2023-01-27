@@ -88,8 +88,7 @@ export class LabookDB extends Database implements LabookRepository {
       Database.connection.destroy();
     }
   };
-
-  //Altere o feed para que ele só exiba 5 posts por vez 
+ 
   public getFeedByFriends = async (id: string): Promise<post[]> => {
     try {
       Database.connection.initialize();

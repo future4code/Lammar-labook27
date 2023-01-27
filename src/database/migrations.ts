@@ -1,7 +1,12 @@
-import { conn } from "../connection/conn"
+import { Database } from "../connection/BaseDatabase";
+import { CustomError } from "../error/CustomError";
 
-conn
-   .raw(`
+class CreateTables extends Database {
+  public async createTables(): Promise<void> {
+    try {
+      await Database.connection
+        .raw(
+          `
 
    SET FOREIGN_KEY_CHECKS=0;
 
@@ -55,8 +60,17 @@ conn
          FOREIGN KEY (user_id) REFERENCES labook_users (id),
          FOREIGN KEY (post_id) REFERENCES labook_posts (id)
       );
-   `)
-   .then(() => {
-    console.log(`Tables created successfully!`)
-})
-.catch((error: any) => console.log(error.sqlMessage || error.message))
+   `
+        )
+        .then(() => {
+          console.log(`Tables created successfully!`);
+        })
+        .catch((error: any) => console.log(error.sqlMessage || error.message));
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
+}
+
+const createTables = new CreateTables();
+createTables.createTables();
