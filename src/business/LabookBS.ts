@@ -1,6 +1,12 @@
 import { CustomError } from "../error/CustomError";
-import { CommentInputDTO, FriendInputDTO, LikeInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
-import { makeFriend, post, user, like, commentModel } from "../model/types";
+import {
+  CommentInputDTO,
+  FriendInputDTO,
+  LikeInputDTO,
+  PostInputDTO,
+  UserInputDTO,
+} from "../error/inputsDTO";
+import { commentModel, like, makeFriend, post, user } from "../model/types";
 import { generateId } from "../services/idGenerator";
 import { LabookRepository } from "./LabookRepository";
 
@@ -51,12 +57,12 @@ export class LabookBS {
 
       const id: string = generateId();
 
-      const post: post = { 
+      const post: post = {
         id,
-        photo, 
-        description, 
-        type, 
-        author_id: author_id
+        photo,
+        description,
+        type,
+        author_id: author_id,
       };
 
       await this.labookDB.createPost(post);
