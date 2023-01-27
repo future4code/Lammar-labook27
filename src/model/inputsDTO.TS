@@ -1,5 +1,4 @@
 export interface PostInputDTO {
-    
     photo: string;
     description: string;
     type: any;
