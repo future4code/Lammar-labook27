@@ -6,7 +6,7 @@ import {
   LikeInputDTO,
   PostInputDTO,
   UserInputDTO,
-} from "../error/inputsDTO";
+} from "../model/inputsDTO";
 
 export class LabookCT {
   constructor(private labookBS: LabookBS) {}

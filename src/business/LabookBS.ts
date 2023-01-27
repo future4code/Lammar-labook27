@@ -5,7 +5,7 @@ import {
   LikeInputDTO,
   PostInputDTO,
   UserInputDTO,
-} from "../error/inputsDTO";
+} from "../model/inputsDTO";
 import { commentModel, like, makeFriend, post, user } from "../model/types";
 import { generateId } from "../services/idGenerator";
 import { LabookRepository } from "./LabookRepository";

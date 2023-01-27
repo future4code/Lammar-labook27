@@ -1,4 +1,4 @@
-import { FriendInputDTO } from "../error/inputsDTO";
+import { FriendInputDTO } from "../model/inputsDTO";
 import { commentModel, like, post, user } from "../model/types";
 
 export interface LabookRepository {
