@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { LabookBS } from "../business/LabookBS";
-import { FriendInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
+import { CommentInputDTO, FriendInputDTO, LikeInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
 
 export class LabookCT {
+  constructor(private labookBS: LabookBS) {}
 
   async ping (req: Request, res: Response) {
     try {
@@ -20,13 +21,11 @@ export class LabookCT {
         password: req.body.password,
       };
 
-      const labookBS = new LabookBS();
-
-      await labookBS.createUser(input);
+      await this.labookBS.createUser(input);
 
       res.status(201).send({ message: "Success!", input });
     } catch (error: any) {
-      res.send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
   }
 
@@ -38,24 +37,23 @@ export class LabookCT {
         type: req.body.type,
         author_id: req.body.author_id,
       };
-      const labookBS = new LabookBS();
-      await labookBS.createPost(input);
+    
+      await this.labookBS.createPost(input);
       res.status(201).send({ message: "Success!", input });
     } catch (error: any) {
-      res.status(400).send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
   }
 
-  async getPostById(req: Request, res: Response) {
+  async getPostById(req: Request, res: Response) { {
     try {
-      const labookBS = new LabookBS();
-
-      const result = await labookBS.getPostById(req.params.id);
+      const result = await this.labookBS.getPostById(req.params.id);
 
       res.status(200).send(result);
     } catch (error: any) {
-      res.status(400).send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
+  }
   }
 
   async makeFriends(req: Request, res: Response) {
@@ -64,32 +62,78 @@ export class LabookCT {
         user_id: req.body.user_id,
         friend_id: req.body.friend_id,
       };
-      const labookBS = new LabookBS();
-      await labookBS.makeFriends(input);
+      
+      await this.labookBS.makeFriends(input);
       res.status(201).send({ message: "Success!", input });
     } catch (error: any) {
-      res.status(400).send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
   }
 
   async unFriend(req: Request, res: Response) {
     try {
-      const labookBS = new LabookBS();
-      await labookBS.unFriend(req.params.id);
+    
+      await this.labookBS.unFriend(req.params.id);
 
       res.status(201).send({ message: "Success!" });
     } catch (error: any) {
-      res.status(400).send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
   }
 
   async getFeedByFriends(req: Request, res: Response) {
     try {
-      const labookBS = new LabookBS();
-      const result = await labookBS.getFeedByFriends(req.params.id);
+      
+      const result = await this.labookBS.getFeedByFriends(req.params.id);
       res.status(200).send(result);
     } catch (error: any) {
-      res.status(400).send(error.message);
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
+    }
+  }
+
+  async getPostsByType(req: Request, res: Response) {
+    try {
+      const result = await this.labookBS.getPostsByType(req.params.type);
+      res.status(200).send(result);
+    } catch (error: any) {
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
+    }
+  }
+
+  async likePost(req: Request, res: Response) {
+    try {
+      const input: LikeInputDTO = {
+        user_id: req.body.user_id,
+        post_id: req.body.post_id,
+    }
+      await this.labookBS.likePost(input);
+      res.status(201).send({ message: "Success!", input });
+    } catch (error: any) {
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
+    }
+    
+  }
+
+  async unlikePost(req: Request, res: Response) {
+    try {
+      await this.labookBS.unlikePost(req.params.id);
+      res.status(201).send({ message: "Success!" });
+    } catch (error: any) {
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
+    }
+  }
+
+  async commentPost(req: Request, res: Response) {
+    try {
+      const input: CommentInputDTO = {
+        user_id: req.body.user_id,
+        post_id: req.body.post_id,
+        comment: req.body.comment,
+    }
+      await this.labookBS.commentPost(input);
+      res.status(201).send({ message: "Success!", input });
+    } catch (error: any) {
+      res.status(error.statusCode || 400).send({ message: error.message || error.sqlMessage });
     }
   }
 }

@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Test",
-  "email": "Test9@gmail.com",
+  "email": "Test2@gmail.com",
   "password": "12345636"
 }
 
@@ -17,25 +17,50 @@ Content-Type: application/json
 
 {
   "photo": "https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-  "description": "Teste10",
+  "description": "Teste8",
   "type": "normal",
-  "author_id": "f50ee0d5-df2d-49f3-935c-b7b6b30a8044"
+  "author_id": "8bba1edb-3095-42d6-8469-9efa1bc7567f"
 }
 
-### get by id
-GET http://localhost:3003/post/f518380d-0181-4d9d-a6cb-1c496d78ac73
+### get post by id
+GET http://localhost:3003/post/b202decd-cfaf-4ed4-82b6-37a4f9a1edab
 
 ### make a friend
 POST http://localhost:3003/user/friend/
 Content-Type: application/json
 
 {
-  "user_id": "23cde120-5caf-4f8c-97ac-cda0684b477c",
-  "friend_id": "c737cc7a-75c0-4054-982c-bc9faa3625fa"
+  "user_id": "d221da15-1e3d-4d0d-b54c-332b2754a493",
+  "friend_id": "8bba1edb-3095-42d6-8469-9efa1bc7567f"
 }
 
 ### undo a friend
 DELETE http://localhost:3003/user/friend/941a40c7-24fc-4512-a1cc-d3e1dad99669
 
 ### get posts by friends
-GET http://localhost:3003/user/feed/23cde120-5caf-4f8c-97ac-cda0684b477c
+GET http://localhost:3003/user/feed/d221da15-1e3d-4d0d-b54c-332b2754a493
+
+### get posts by type
+GET http://localhost:3003/post/type/normal
+
+### like a post
+POST http://localhost:3003/post/like/
+Content-Type: application/json
+
+{
+  "user_id": "8f14d2ad-7523-47cb-a787-103a986f73b5",
+  "post_id": "b202decd-cfaf-4ed4-82b6-37a4f9a1edab"
+}
+
+### undo a like
+DELETE http://localhost:3003/post/deslike/687ce0c7-ed9b-4d42-b7a5-921410d1493a
+
+### comment a post
+POST http://localhost:3003/post/comment/
+Content-Type: application/json
+
+{
+  "user_id": "d221da15-1e3d-4d0d-b54c-332b2754a493",
+  "post_id": "4c246484-1f6b-4f08-afed-86ad4bef3e53",
+  "comment": "Teste2"
+}

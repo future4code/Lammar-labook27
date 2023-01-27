@@ -8,6 +8,8 @@ conn
    DROP TABLE IF EXISTS labook_users;
    DROP TABLE IF EXISTS labook_posts;
    DROP TABLE IF EXISTS labook_friends;
+   DROP TABLE IF EXISTS labook_likes;
+   DROP TABLE IF EXISTS labook_comments;
    
    SET FOREIGN_KEY_CHECKS=1;
 
@@ -34,7 +36,25 @@ conn
          user_id VARCHAR(255),
          friend_id VARCHAR(255),
          FOREIGN KEY (user_id) REFERENCES labook_users (id)
-         )
+         );
+
+      CREATE TABLE IF NOT EXISTS labook_likes(
+         id VARCHAR(255) PRIMARY KEY,
+         user_id VARCHAR(255),
+         post_id VARCHAR(255),
+         FOREIGN KEY (user_id) REFERENCES labook_users (id),
+         FOREIGN KEY (post_id) REFERENCES labook_posts (id)
+      );
+
+      CREATE TABLE IF NOT EXISTS labook_comments(
+         id VARCHAR(255) PRIMARY KEY,
+         comment VARCHAR(255) NOT NULL,
+         user_id VARCHAR(255),
+         post_id VARCHAR(255),
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         FOREIGN KEY (user_id) REFERENCES labook_users (id),
+         FOREIGN KEY (post_id) REFERENCES labook_posts (id)
+      );
    `)
    .then(() => {
     console.log(`Tables created successfully!`)
