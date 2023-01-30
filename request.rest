@@ -1,5 +1,5 @@
 ### test
-GET https://lammar-labook27.onrender.com/ping
+GET http://localhost:3003/ping
 
 ### create user
 POST https://lammar-labook27.onrender.com/user/create
