@@ -25,6 +25,9 @@ Content-Type: application/json
 ### get post by id
 GET https://lammar-labook27.onrender.com/post/c5971461-be6b-419e-865d-3b71a85999e5
 
+###
+GET http://localhost:3003/post/c5971461-be6b-419e-865d-3b71a85999e5
+
 ### make a friend
 POST http://localhost:3003/user/friend/
 Content-Type: application/json
