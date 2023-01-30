@@ -1,5 +1,5 @@
 import express from "express"
-import { app } from "../app"
+// import { app } from "../app"
 import { LabookBS } from "../business/LabookBS";
 import { LabookCT } from "../controller/LabookCT";
 import { LabookDB } from "../database/LabookDB";
@@ -12,7 +12,7 @@ const labookBS = new LabookBS(labookDB)
 const labookCT = new LabookCT(labookBS)
 
 //teste
-app.get('/ping', (req, res) => labookCT.ping(req, res))
+// app.get('/ping', (req, res) => labookCT.ping(req, res))
 
 userRouter.post('/create', (req, res) => labookCT.createUser(req, res))
 userRouter.post('/friend/', (req, res) => labookCT.makeFriends(req, res))
