@@ -1,13 +1,13 @@
 ### test
-GET http://localhost:3003/ping
+GET https://lammar-labook27.onrender.com/ping
 
 ### create user
-POST http://localhost:3003/user/create
+POST https://lammar-labook27.onrender.com/user/create
 Content-Type: application/json
 
 {
   "name": "Test",
-  "email": "Test2@gmail.com",
+  "email": "Test5@gmail.com",
   "password": "12345636"
 }
 
@@ -19,11 +19,11 @@ Content-Type: application/json
   "photo": "https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   "description": "Teste8",
   "type": "normal",
-  "author_id": "8bba1edb-3095-42d6-8469-9efa1bc7567f"
+  "author_id": "49060e5d-ec1e-4e7e-9baa-798421516921"
 }
 
 ### get post by id
-GET http://localhost:3003/post/05387f26-1dc0-49cc-9454-321fe962ad89
+GET https://lammar-labook27.onrender.com/post/c5971461-be6b-419e-865d-3b71a85999e5
 
 ### make a friend
 POST http://localhost:3003/user/friend/
