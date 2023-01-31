@@ -1,13 +1,6 @@
 import { LabookDB } from "../database/LabookDB";
-import { CustomError } from "../error/CustomError";
-import {
-  CommentInputDTO,
-  FriendInputDTO,
-  LikeInputDTO,
-  PostInputDTO,
-  UserInputDTO,
-} from "../model/inputsDTO";
-import { commentModel, like, makeFriend, post, user } from "../model/types";
+import { UserInputDTO } from "../model/inputsDTO";
+import { user } from "../model/types";
 import { generateId } from "../services/idGenerator";
 // import { LabookRepository } from "./LabookRepository";
 
@@ -17,7 +10,7 @@ export class LabookBS {
   async createUser(input: UserInputDTO): Promise<void> {
     try {
       const labookDB = new LabookDB();
-      
+
       const { name, email, password } = input;
 
       if (!name || !email || !password) {
@@ -39,7 +32,6 @@ export class LabookBS {
       const user: user = { id, name, email, password };
 
       await labookDB.createUser(user);
-
     } catch (error: any) {
       throw new Error(error.message);
     }

@@ -1,6 +1,6 @@
 import { Database } from "../connection/BaseDatabase";
 import { CustomError } from "../error/CustomError";
-import { makeFriend, post, user, like, commentModel } from "../model/types";
+import { user } from "../model/types";
 
 export class LabookDB extends Database {
   private TABLE_USERS = "labook_users";
@@ -20,9 +20,6 @@ export class LabookDB extends Database {
           password: user.password,
         })
         .into(this.TABLE_USERS);
-
-        
-        
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     } finally {
@@ -90,7 +87,7 @@ export class LabookDB extends Database {
   //     Database.connection.destroy();
   //   }
   // };
- 
+
   // public getFeedByFriends = async (id: string): Promise<post[]> => {
   //   try {
   //     Database.connection.initialize();
@@ -128,7 +125,7 @@ export class LabookDB extends Database {
   //     Database.connection.destroy();
   //   }
   // };
-  
+
   // public likePost = async (likes : like) => {
   //   try {
   //     Database.connection.initialize();
@@ -174,7 +171,4 @@ export class LabookDB extends Database {
   //     Database.connection.destroy();
   //   }
   // };
-
-
-
 }
