@@ -1,6 +1,6 @@
 import { Database } from "../connection/BaseDatabase";
 import { CustomError } from "../error/CustomError";
-import { user } from "../model/types";
+import { makeFriend, user } from "../model/types";
 
 export class UserDatabase extends Database {
   private TABLE_USERS = "labook_users";
@@ -20,6 +20,23 @@ export class UserDatabase extends Database {
           password: user.password,
         })
         .into(this.TABLE_USERS);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    } finally {
+      Database.connection.destroy();
+    }
+  };
+
+  public makeFriends = async (friends: makeFriend) => {
+    try {
+      Database.connection.initialize();
+      await Database.connection
+        .insert({
+          id: friends.id,
+          user_id: friends.user_id,
+          friend_id: friends.friend_id,
+        })
+        .into(this.TABLE_FRIENDS);
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     } finally {
@@ -60,22 +77,6 @@ export class UserDatabase extends Database {
   //   }
   // };
 
-  // public makeFriends = async (friends: makeFriend) => {
-  //   try {
-  //     Database.connection.initialize();
-  //     await Database.connection
-  //       .insert({
-  //         id: friends.id,
-  //         user_id: friends.user_id,
-  //         friend_id: friends.friend_id,
-  //       })
-  //       .into(this.TABLE_FRIENDS);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   } finally {
-  //     Database.connection.destroy();
-  //   }
-  // };
 
   // public unFriend = async (id: string) => {
   //   try {

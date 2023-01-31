@@ -1,6 +1,7 @@
 import { UserDatabase } from "../database/userDatabase";
-import { UserInputDTO } from "../model/inputsDTO";
-import { user } from "../model/types";
+import { CustomError } from "../error/CustomError";
+import { FriendInputDTO, UserInputDTO } from "../model/inputsDTO";
+import { user, makeFriend } from "../model/types";
 import { generateId } from "../services/idGenerator";
 
 export class UserBusiness {
@@ -32,6 +33,39 @@ export class UserBusiness {
       await userDatabase.createUser(user);
     } catch (error: any) {
       throw new Error(error.message);
+    }
+  }
+
+  async makeFriends(input: FriendInputDTO): Promise<void> {
+    try {
+      const { user_id, friend_id } = input;
+
+      if (!user_id || !friend_id) {
+        throw new Error("user_id and friend_id must be provided");
+      }
+
+      if (user_id === friend_id) {
+        throw new Error("user_id and friend_id must be different");
+      }
+
+      if (user_id.length !== 36 || friend_id.length !== 36) {
+        throw new Error("Invalid id");
+      }
+
+      const id: string = generateId();
+
+      const makeFriend: makeFriend = {
+        id,
+        user_id,
+        friend_id,
+      };
+
+      const userDatabase = new UserDatabase();
+
+      await userDatabase.makeFriends(makeFriend);
+      
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
     }
   }
 
@@ -81,35 +115,7 @@ export class UserBusiness {
   //   }
   // }
 
-  // async makeFriends(input: FriendInputDTO): Promise<void> {
-  //   try {
-  //     const { user_id, friend_id } = input;
-
-  //     if (!user_id || !friend_id) {
-  //       throw new Error("user_id and friend_id must be provided");
-  //     }
-
-  //     if (user_id === friend_id) {
-  //       throw new Error("user_id and friend_id must be different");
-  //     }
-
-  //     if (user_id.length !== 36 || friend_id.length !== 36) {
-  //       throw new Error("Invalid id");
-  //     }
-
-  //     const id: string = generateId();
-
-  //     const makeFriend: makeFriend = {
-  //       id,
-  //       user_id,
-  //       friend_id,
-  //     };
-
-  //     await this.labookDB.makeFriends(makeFriend);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
+  
 
   // async unFriend(id: string): Promise<void> {
   //   try {

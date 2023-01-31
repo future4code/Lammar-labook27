@@ -4,8 +4,8 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "tsc && node ./build/index.js",
-      "dev": "ts-node-dev src/index.ts",
+      "start": "tsc && node ./build/server.js",
+      "dev": "ts-node-dev src/server.ts",
       "migrations": "tsc && node ./build/database/migrations.js"
    },
    "keywords": [],

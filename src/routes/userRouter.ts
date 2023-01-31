@@ -15,7 +15,6 @@
 // app.get('/ping', (req, res) => labookCT.ping(req, res))
 
 // userRouter.post('/create', (req, res) => labookCT.createUser(req, res))
-// userRouter.post('/friend/', (req, res) => labookCT.makeFriends(req, res))
 // userRouter.delete('/friend/:id', (req, res) => labookCT.unFriend(req, res))
 // userRouter.get('/feed/:id', (req, res) => labookCT.getFeedByFriends(req, res))
 
@@ -36,3 +35,4 @@ const userController = new UserController();
 export const userRouter = express.Router();
 
 userRouter.post("/create", userController.createUser);
+userRouter.post('/friend/', userController.makeFriends);

@@ -27,6 +27,25 @@ export class UserController {
     }
   }
 
+  async makeFriends(req: Request, res: Response) {
+    try {
+      const input: FriendInputDTO = {
+        user_id: req.body.user_id,
+        friend_id: req.body.friend_id,
+      };
+
+      const userBusiness = new UserBusiness();
+
+      await userBusiness.makeFriends(input);
+      
+      res.status(201).send({ message: "Success!", input });
+    } catch (error: any) {
+      res
+        .status(error.statusCode || 400)
+        .send({ message: error.message || error.sqlMessage });
+    }
+  }
+
   // async createPost(req: Request, res: Response) {
   //   try {
   //     const input: PostInputDTO = {
@@ -56,22 +75,6 @@ export class UserController {
   //         .status(error.statusCode || 400)
   //         .send({ message: error.message || error.sqlMessage });
   //     }
-  //   }
-  // }
-
-  // async makeFriends(req: Request, res: Response) {
-  //   try {
-  //     const input: FriendInputDTO = {
-  //       user_id: req.body.user_id,
-  //       friend_id: req.body.friend_id,
-  //     };
-
-  //     await this.labookBS.makeFriends(input);
-  //     res.status(201).send({ message: "Success!", input });
-  //   } catch (error: any) {
-  //     res
-  //       .status(error.statusCode || 400)
-  //       .send({ message: error.message || error.sqlMessage });
   //   }
   // }
 

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "Test",
-  "email": "Test88@gmail.com",
+  "email": "Test3@gmail.com",
   "password": "12345636"
 }
 
@@ -27,8 +27,8 @@ POST http://localhost:3003/user/friend/
 Content-Type: application/json
 
 {
-  "user_id": "d221da15-1e3d-4d0d-b54c-332b2754a493",
-  "friend_id": "8bba1edb-3095-42d6-8469-9efa1bc7567f"
+  "user_id": "0259cc70-a94a-49e2-97d0-bfe478c2d941",
+  "friend_id": "4f1f37e0-70c3-49e5-a76d-945e89771a96"
 }
 
 ### undo a friend
