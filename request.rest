@@ -2,12 +2,12 @@
 GET http://localhost:3003/ping
 
 ### create user
-POST https://lammar-labook27.onrender.com/user/create
+POST http://localhost:3003/user/create
 Content-Type: application/json
 
 {
   "name": "Test",
-  "email": "Test5@gmail.com",
+  "email": "Test3@gmail.com",
   "password": "12345636"
 }
 
@@ -23,9 +23,6 @@ Content-Type: application/json
 }
 
 ### get post by id
-GET https://lammar-labook27.onrender.com/post/c5971461-be6b-419e-865d-3b71a85999e5
-
-###
 GET http://localhost:3003/post/c5971461-be6b-419e-865d-3b71a85999e5
 
 ### make a friend

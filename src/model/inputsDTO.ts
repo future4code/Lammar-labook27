@@ -1,3 +1,9 @@
+export interface UserInputDTO {
+    name: string;
+    email: string;
+    password: string;
+}
+
 export interface PostInputDTO {
     photo: string;
     description: string;
@@ -18,11 +24,6 @@ export interface FriendInputDTO {
     friend_id: string;
 }
 
-export interface UserInputDTO {
-    name: string;
-    email: string;
-    password: string;
-}
 
 export interface LikeInputDTO {
     user_id: string;
