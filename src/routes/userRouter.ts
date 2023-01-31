@@ -10,8 +10,6 @@
 // userRouter.delete('/friend/:id', (req, res) => labookCT.unFriend(req, res))
 // userRouter.get('/feed/:id', (req, res) => labookCT.getFeedByFriends(req, res))
 
-// postRouter.post('/create', (req, res) => labookCT.createPost(req, res))
-// postRouter.get('/:id', (req, res) => labookCT.getPostById(req, res))
 // postRouter.get('/type/:type', (req, res) => labookCT.getPostsByType(req, res))
 // postRouter.post('/like', (req, res) => labookCT.likePost(req, res))
 // postRouter.delete('/deslike/:id', (req, res) => labookCT.unlikePost(req, res))

@@ -4,9 +4,10 @@ import { FriendInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
 import { post, makeFriend } from "../model/types";
 import { generateId } from "../services/idGenerator";
 
+const postDatabase = new PostDatabase();
+
 export class PostBusiness {
-    async createPost(input: PostInputDTO): Promise<void> {
-        const postDatabase = new PostDatabase();
+    async createPost(input: PostInputDTO): Promise<void> { 
     try {
       const { photo, description, type, author_id } = input;
 
@@ -37,4 +38,21 @@ export class PostBusiness {
     }
   }
 
+  async getPostById(id: string) {
+    try {
+
+      const posts = await postDatabase.getPostById(id)
+
+      if (!posts) {
+        throw new Error("Post not found");
+      }
+
+      return posts
+      
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+ }
+
+  
 }

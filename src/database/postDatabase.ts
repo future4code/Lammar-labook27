@@ -23,4 +23,19 @@ export class PostDatabase extends Database {
       Database.connection.destroy();
     }
   };
+
+  public getPostById = async (id: string) => {
+    try {
+      
+      Database.connection.initialize();
+      const result = await Database.connection(this.TABLE_POSTS)
+        .select("*")
+        .where({ id });
+      return result[0]
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    } finally {
+      Database.connection.destroy();
+    }
+  };
 }

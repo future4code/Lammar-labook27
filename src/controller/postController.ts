@@ -8,6 +8,8 @@ import {
   UserInputDTO,
 } from "../model/inputsDTO";
 
+const postBusiness = new PostBusiness();
+
 export class PostController {
     async createPost(req: Request, res: Response) {
     try {
@@ -18,8 +20,6 @@ export class PostController {
         author_id: req.body.author_id,
       };
 
-        const postBusiness = new PostBusiness();
-
         await postBusiness.createPost(input);
 
       res.status(201).send({ message: "Success!", input });
@@ -29,4 +29,20 @@ export class PostController {
         .send({ message: error.message || error.sqlMessage });
     }
   }
+
+  async getPostById(req: Request, res: Response) {
+    try {
+
+      const id = req.params.id;
+
+      const result = await postBusiness.getPostById(id);
+
+      res.status(200).send(result);
+    }
+    catch (error: any) {
+      res
+        .status(error.statusCode || 400)
+        .send({ message: error.message || error.sqlMessage });
+    }
+  } 
 }

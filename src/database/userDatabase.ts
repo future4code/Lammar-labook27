@@ -44,23 +44,6 @@ export class UserDatabase extends Database {
     }
   };
 
- 
-
-  // public getPostById = async (id: string) => {
-  //   try {
-  //     Database.connection.initialize();
-  //     const result = await Database.connection(this.TABLE_POSTS)
-  //       .select("*")
-  //       .where({ id });
-  //     return result[0];
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   } finally {
-  //     Database.connection.destroy();
-  //   }
-  // };
-
-
   // public unFriend = async (id: string) => {
   //   try {
   //     Database.connection.initialize();

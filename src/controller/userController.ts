@@ -46,20 +46,6 @@ export class UserController {
     }
   }
 
-  // async getPostById(req: Request, res: Response) {
-  //   {
-  //     try {
-  //       const result = await this.labookBS.getPostById(req.params.id);
-
-  //       res.status(200).send(result);
-  //     } catch (error: any) {
-  //       res
-  //         .status(error.statusCode || 400)
-  //         .send({ message: error.message || error.sqlMessage });
-  //     }
-  //   }
-  // }
-
   // async unFriend(req: Request, res: Response) {
   //   try {
   //     await this.labookBS.unFriend(req.params.id);

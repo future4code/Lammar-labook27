@@ -69,7 +69,6 @@ export class UserBusiness {
     }
   }
 
-  
 
 
   // async getPostById(id: string): Promise<post> {
