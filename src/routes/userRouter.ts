@@ -7,7 +7,6 @@
 // export const userRouter = express.Router()
 // export const postRouter = express.Router()
 
-// userRouter.delete('/friend/:id', (req, res) => labookCT.unFriend(req, res))
 // userRouter.get('/feed/:id', (req, res) => labookCT.getFeedByFriends(req, res))
 
 // postRouter.get('/type/:type', (req, res) => labookCT.getPostsByType(req, res))
@@ -24,3 +23,5 @@ export const userRouter = Router();
 
 userRouter.post("/create", userController.createUser);
 userRouter.post('/friend/', userController.makeFriends);
+userRouter.delete('/friend/:id', userController.unFriend)
+

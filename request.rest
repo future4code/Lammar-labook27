@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### undo a friend
-DELETE http://localhost:3003/user/friend/941a40c7-24fc-4512-a1cc-d3e1dad99669
+DELETE http://localhost:3003/user/friend/e8001d46-7d8f-4ccd-b831-4d83ead5906e
 
 ### get posts by friends
 GET http://localhost:3003/user/feed/d221da15-1e3d-4d0d-b54c-332b2754a493

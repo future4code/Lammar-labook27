@@ -8,6 +8,8 @@ import {
   UserInputDTO,
 } from "../model/inputsDTO";
 
+const userBusiness = new UserBusiness();
+
 export class UserController {
   async createUser(req: Request, res: Response) {
     try {
@@ -16,8 +18,6 @@ export class UserController {
         email: req.body.email,
         password: req.body.password,
       };
-
-      const userBusiness = new UserBusiness();
 
       await userBusiness.createUser(input);
 
@@ -34,8 +34,6 @@ export class UserController {
         friend_id: req.body.friend_id,
       };
 
-      const userBusiness = new UserBusiness();
-
       await userBusiness.makeFriends(input);
       
       res.status(201).send({ message: "Success!", input });
@@ -46,17 +44,17 @@ export class UserController {
     }
   }
 
-  // async unFriend(req: Request, res: Response) {
-  //   try {
-  //     await this.labookBS.unFriend(req.params.id);
+  async unFriend(req: Request, res: Response) {
+    try {
+      await userBusiness.unFriend(req.params.id);
 
-  //     res.status(201).send({ message: "Success!" });
-  //   } catch (error: any) {
-  //     res
-  //       .status(error.statusCode || 400)
-  //       .send({ message: error.message || error.sqlMessage });
-  //   }
-  // }
+      res.status(201).send({ message: "Success!" });
+    } catch (error: any) {
+      res
+        .status(error.statusCode || 400)
+        .send({ message: error.message || error.sqlMessage });
+    }
+  }
 
   // async getFeedByFriends(req: Request, res: Response) {
   //   try {

@@ -4,6 +4,8 @@ import { FriendInputDTO, UserInputDTO } from "../model/inputsDTO";
 import { user, makeFriend } from "../model/types";
 import { generateId } from "../services/idGenerator";
 
+const userDatabase = new UserDatabase();
+
 export class UserBusiness {
 
   async createUser(input: UserInputDTO): Promise<void> {
@@ -60,8 +62,6 @@ export class UserBusiness {
         friend_id,
       };
 
-      const userDatabase = new UserDatabase();
-
       await userDatabase.makeFriends(makeFriend);
       
     } catch (error: any) {
@@ -69,37 +69,18 @@ export class UserBusiness {
     }
   }
 
+  async unFriend(id: string): Promise<void> {
+    try {
+      if (!id) {
+        throw new Error("Id must be provided");
+      }
 
-
-  // async getPostById(id: string): Promise<post> {
-  //   try {
-  //     if (!id) {
-  //       throw new Error("Id must be provided");
-  //     }
-
-  //     if (id.length !== 36) {
-  //       throw new Error("Invalid id");
-  //     }
-
-  //     return await this.labookDB.getPostById(id);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
-
-  
-
-  // async unFriend(id: string): Promise<void> {
-  //   try {
-  //     if (!id) {
-  //       throw new Error("Id must be provided");
-  //     }
-
-  //     await this.labookDB.unFriend(id);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
+      await userDatabase.unFriend(id);
+      
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
 
   // async getFeedByFriends(id: string): Promise<post[]> {
   //   try {

@@ -44,16 +44,16 @@ export class UserDatabase extends Database {
     }
   };
 
-  // public unFriend = async (id: string) => {
-  //   try {
-  //     Database.connection.initialize();
-  //     await Database.connection(this.TABLE_FRIENDS).delete().where({ id });
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   } finally {
-  //     Database.connection.destroy();
-  //   }
-  // };
+  public unFriend = async (id: string) => {
+    try {
+      Database.connection.initialize();
+      await Database.connection(this.TABLE_FRIENDS).delete().where({ id });
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    } finally {
+      Database.connection.destroy();
+    }
+  };
 
   // public getFeedByFriends = async (id: string): Promise<post[]> => {
   //   try {
