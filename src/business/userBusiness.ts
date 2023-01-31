@@ -69,35 +69,8 @@ export class UserBusiness {
     }
   }
 
-  // async createPost(input: PostInputDTO): Promise<void> {
-  //   try {
-  //     const { photo, description, type, author_id } = input;
+  
 
-  //     if (!photo || !description || !type || !author_id) {
-  //       throw new Error(
-  //         `"photo", "description", "type", "created_at" and "author_id" must be provided'`
-  //       );
-  //     }
-
-  //     if (type !== "normal" && type !== "event") {
-  //       throw new Error("Type must be 'normal' or 'evento'");
-  //     }
-
-  //     const id: string = generateId();
-
-  //     const post: post = {
-  //       id,
-  //       photo,
-  //       description,
-  //       type,
-  //       author_id: author_id,
-  //     };
-
-  //     await this.labookDB.createPost(post);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
 
   // async getPostById(id: string): Promise<post> {
   //   try {

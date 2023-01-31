@@ -16,7 +16,7 @@ Content-Type: application/json
   "photo": "https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   "description": "Teste8",
   "type": "normal",
-  "author_id": "49060e5d-ec1e-4e7e-9baa-798421516921"
+  "author_id": "0259cc70-a94a-49e2-97d0-bfe478c2d941"
 }
 
 ### get post by id

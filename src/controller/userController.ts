@@ -46,24 +46,6 @@ export class UserController {
     }
   }
 
-  // async createPost(req: Request, res: Response) {
-  //   try {
-  //     const input: PostInputDTO = {
-  //       photo: req.body.photo,
-  //       description: req.body.description,
-  //       type: req.body.type,
-  //       author_id: req.body.author_id,
-  //     };
-
-  //     await this.labookBS.createPost(input);
-  //     res.status(201).send({ message: "Success!", input });
-  //   } catch (error: any) {
-  //     res
-  //       .status(error.statusCode || 400)
-  //       .send({ message: error.message || error.sqlMessage });
-  //   }
-  // }
-
   // async getPostById(req: Request, res: Response) {
   //   {
   //     try {

@@ -7,14 +7,6 @@
 // export const userRouter = express.Router()
 // export const postRouter = express.Router()
 
-// const labookDB = new LabookDB()
-// const labookBS = new LabookBS(labookDB)
-// const labookCT = new LabookCT(labookBS)
-
-// //teste
-// app.get('/ping', (req, res) => labookCT.ping(req, res))
-
-// userRouter.post('/create', (req, res) => labookCT.createUser(req, res))
 // userRouter.delete('/friend/:id', (req, res) => labookCT.unFriend(req, res))
 // userRouter.get('/feed/:id', (req, res) => labookCT.getFeedByFriends(req, res))
 
@@ -25,14 +17,12 @@
 // postRouter.delete('/deslike/:id', (req, res) => labookCT.unlikePost(req, res))
 // postRouter.post('/comment', (req, res) => labookCT.commentPost(req, res))
 
-
-
-import express from "express";
+import { Router }from "express";
 import { UserController } from "../controller/userController";
 
 const userController = new UserController();
 
-export const userRouter = express.Router();
+export const userRouter = Router();
 
 userRouter.post("/create", userController.createUser);
 userRouter.post('/friend/', userController.makeFriends);
