@@ -1,13 +1,10 @@
-### test
-GET http://localhost:3003/ping
-
-### create user
+#### create user
 POST http://localhost:3003/user/create
 Content-Type: application/json
 
 {
   "name": "Test",
-  "email": "Test4@gmail.com",
+  "email": "Test88@gmail.com",
   "password": "12345636"
 }
 

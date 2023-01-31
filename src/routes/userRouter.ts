@@ -26,12 +26,13 @@
 // postRouter.delete('/deslike/:id', (req, res) => labookCT.unlikePost(req, res))
 // postRouter.post('/comment', (req, res) => labookCT.commentPost(req, res))
 
-import { LabookCT } from "../controller/LabookCT";
+
 
 import express from "express";
+import { UserController } from "../controller/userController";
 
-const labookCT = new LabookCT();
+const userController = new UserController();
 
 export const userRouter = express.Router();
 
-userRouter.post("/create", labookCT.createUser);
+userRouter.post("/create", userController.createUser);

@@ -1,6 +1,4 @@
-// import { userRouter, postRouter } from "./routes/routes"
 import { userRouter } from "./routes/userRouter"
-
 import express from "express"
 import cors from "cors"
 

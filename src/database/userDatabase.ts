@@ -2,7 +2,7 @@ import { Database } from "../connection/BaseDatabase";
 import { CustomError } from "../error/CustomError";
 import { user } from "../model/types";
 
-export class LabookDB extends Database {
+export class UserDatabase extends Database {
   private TABLE_USERS = "labook_users";
   private TABLE_POSTS = "labook_posts";
   private TABLE_FRIENDS = "labook_friends";

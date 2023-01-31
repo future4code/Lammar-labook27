@@ -1,15 +1,13 @@
-import { LabookDB } from "../database/LabookDB";
+import { UserDatabase } from "../database/userDatabase";
 import { UserInputDTO } from "../model/inputsDTO";
 import { user } from "../model/types";
 import { generateId } from "../services/idGenerator";
-// import { LabookRepository } from "./LabookRepository";
 
-export class LabookBS {
-  // constructor(private labookDB: LabookRepository) {}
+export class UserBusiness {
 
   async createUser(input: UserInputDTO): Promise<void> {
     try {
-      const labookDB = new LabookDB();
+      const userDatabase = new UserDatabase();
 
       const { name, email, password } = input;
 
@@ -31,7 +29,7 @@ export class LabookBS {
 
       const user: user = { id, name, email, password };
 
-      await labookDB.createUser(user);
+      await userDatabase.createUser(user);
     } catch (error: any) {
       throw new Error(error.message);
     }

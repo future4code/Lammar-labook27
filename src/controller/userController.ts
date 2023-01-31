@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LabookBS } from "../business/LabookBS";
+import { UserBusiness } from "../business/userBusiness";
 import {
   CommentInputDTO,
   FriendInputDTO,
@@ -8,17 +8,7 @@ import {
   UserInputDTO,
 } from "../model/inputsDTO";
 
-export class LabookCT {
-  // constructor(private labookBS: LabookBS) {}
-
-  async ping(req: Request, res: Response) {
-    try {
-      res.status(200).send({ message: "Pong!" });
-    } catch (error: any) {
-      res.status(400).send({ message: error.message });
-    }
-  }
-
+export class UserController {
   async createUser(req: Request, res: Response) {
     try {
       const input: UserInputDTO = {
@@ -27,9 +17,9 @@ export class LabookCT {
         password: req.body.password,
       };
 
-      const labookBS = new LabookBS();
+      const userBusiness = new UserBusiness();
 
-      await labookBS.createUser(input);
+      await userBusiness.createUser(input);
 
       res.status(201).send({ message: "Success!", input });
     } catch (error: any) {
