@@ -1,7 +1,7 @@
 import { UserDatabase } from "../database/userDatabase";
 import { CustomError } from "../error/CustomError";
 import { FriendInputDTO, UserInputDTO } from "../model/inputsDTO";
-import { user, makeFriend } from "../model/types";
+import { user, makeFriend, post } from "../model/types";
 import { generateId } from "../services/idGenerator";
 
 const userDatabase = new UserDatabase();
@@ -82,100 +82,20 @@ export class UserBusiness {
     }
   }
 
-  // async getFeedByFriends(id: string): Promise<post[]> {
-  //   try {
-  //     if (!id) {
-  //       throw new Error("Id must be provided");
-  //     }
+  async getFeedByFriends(id: string): Promise<post[]> {
+    try {
+      if (!id) {
+        throw new Error("Id must be provided");
+      }
 
-  //     if (id.length !== 36) {
-  //       throw new Error("Invalid id");
-  //     }
+      if (id.length !== 36) {
+        throw new Error("Invalid id");
+      }
 
-  //     return await this.labookDB.getFeedByFriends(id);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
+      return await userDatabase.getFeedByFriends(id);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }  
 
-  // async getPostsByType(type: string): Promise<post[]> {
-  //   try {
-  //     if (!type) {
-  //       throw new Error("Type must be provided");
-  //     }
-
-  //     if (type !== "normal" && type !== "event") {
-  //       throw new Error("Type must be 'normal' or 'evento'");
-  //     }
-
-  //     return await this.labookDB.getPostsByType(type);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
-
-  // async likePost(input: LikeInputDTO): Promise<any> {
-  //   try {
-  //     const { user_id, post_id } = input;
-
-  //     if (!user_id || !post_id) {
-  //       throw new Error("user_id and post_id must be provided");
-  //     }
-
-  //     if (user_id.length !== 36 || post_id.length !== 36) {
-  //       throw new Error("Invalid id");
-  //     }
-
-  //     const id: string = generateId();
-
-  //     const like: like = {
-  //       id,
-  //       user_id,
-  //       post_id,
-  //     };
-
-  //     return await this.labookDB.likePost(like);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
-
-  // async unlikePost(id: string): Promise<void> {
-  //   try {
-  //     if (!id) {
-  //       throw new Error("Id must be provided");
-  //     }
-
-  //     await this.labookDB.unlikePost(id);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
-
-  // async commentPost(input: CommentInputDTO): Promise<void> {
-  //   try {
-  //     const { user_id, post_id, comment } = input;
-
-  //     if (!user_id || !post_id || !comment) {
-  //       throw new Error("user_id, post_id and comment must be provided");
-  //     }
-
-  //     if (user_id.length !== 36 || post_id.length !== 36) {
-  //       throw new Error("Invalid id");
-  //     }
-
-  //     const id: string = generateId();
-
-  //     const commentRespost: commentModel = {
-  //       id,
-  //       user_id,
-  //       post_id,
-  //       comment,
-  //     };
-
-  //     await this.labookDB.commentPost(commentRespost);
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message);
-  //   }
-  // }
 }

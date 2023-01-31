@@ -1,7 +1,8 @@
 import { PostDatabase } from "../database/postDatabase";
+import { UserDatabase } from "../database/userDatabase";
 import { CustomError } from "../error/CustomError";
-import { FriendInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
-import { post, makeFriend } from "../model/types";
+import { CommentInputDTO, FriendInputDTO, LikeInputDTO, PostInputDTO, UserInputDTO } from "../model/inputsDTO";
+import { post, like, makeFriend, commentModel } from "../model/types";
 import { generateId } from "../services/idGenerator";
 
 const postDatabase = new PostDatabase();
@@ -54,5 +55,85 @@ export class PostBusiness {
     }
  }
 
+ async getPostsByType(type: string): Promise<post[]> {
+  try {
+    if (!type) {
+      throw new Error("Type must be provided");
+    }
+
+    if (type !== "normal" && type !== "event") {
+      throw new Error("Type must be 'normal' or 'evento'");
+    }
+
+    return await postDatabase.getPostsByType(type);
+  } catch (error: any) {
+    throw new CustomError(error.statusCode, error.message);
+  }
+}
+
+async likePost(input: LikeInputDTO): Promise<any> {
+    try {
+      const { user_id, post_id } = input;
+
+      if (!user_id || !post_id) {
+        throw new Error("user_id and post_id must be provided");
+      }
+
+      if (user_id.length !== 36 || post_id.length !== 36) {
+        throw new Error("Invalid id");
+      }
+
+      const id: string = generateId();
+
+      const like: like = {
+        id,
+        user_id,
+        post_id,
+      };
+
+      return await postDatabase.likePost(like);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
+
+  async unlikePost(id: string): Promise<void> {
+    try {
+      if (!id) {
+        throw new Error("Id must be provided");
+      }
+
+      await postDatabase.unlikePost(id);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
+
+  async commentPost(input: CommentInputDTO): Promise<void> {
+    try {
+      const { user_id, post_id, comment } = input;
+
+      if (!user_id || !post_id || !comment) {
+        throw new Error("user_id, post_id and comment must be provided");
+      }
+
+      if (user_id.length !== 36 || post_id.length !== 36) {
+        throw new Error("Invalid id");
+      }
+
+      const id: string = generateId();
+
+      const commentRespost: commentModel = {
+        id,
+        user_id,
+        post_id,
+        comment,
+      };
+
+      await postDatabase.commentPost(commentRespost);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
   
 }

@@ -14,8 +14,8 @@ Content-Type: application/json
 
 {
   "photo": "https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-  "description": "Teste8",
-  "type": "normal",
+  "description": "Teste0",
+  "type": "event",
   "author_id": "0259cc70-a94a-49e2-97d0-bfe478c2d941"
 }
 
@@ -35,7 +35,7 @@ Content-Type: application/json
 DELETE http://localhost:3003/user/friend/e8001d46-7d8f-4ccd-b831-4d83ead5906e
 
 ### get posts by friends
-GET http://localhost:3003/user/feed/d221da15-1e3d-4d0d-b54c-332b2754a493
+GET http://localhost:3003/user/feed/0259cc70-a94a-49e2-97d0-bfe478c2d941
 
 ### get posts by type
 GET http://localhost:3003/post/type/normal
@@ -45,19 +45,19 @@ POST http://localhost:3003/post/like/
 Content-Type: application/json
 
 {
-  "user_id": "8f14d2ad-7523-47cb-a787-103a986f73b5",
-  "post_id": "b202decd-cfaf-4ed4-82b6-37a4f9a1edab"
+  "user_id": "d53604cd-1ad9-4cf4-8556-8ee80349b1bb",
+  "post_id": "0af7f49d-a214-460e-a129-d2e0f9a4fc58"
 }
 
 ### undo a like
-DELETE http://localhost:3003/post/deslike/687ce0c7-ed9b-4d42-b7a5-921410d1493a
+DELETE http://localhost:3003/post/deslike/0f889526-425f-479b-bbd2-0b52ba2b94a4
 
 ### comment a post
 POST http://localhost:3003/post/comment/
 Content-Type: application/json
 
 {
-  "user_id": "d221da15-1e3d-4d0d-b54c-332b2754a493",
-  "post_id": "4c246484-1f6b-4f08-afed-86ad4bef3e53",
+  "user_id": "4f1f37e0-70c3-49e5-a76d-945e89771a96",
+  "post_id": "71b8d1cf-1fef-4f4e-939d-0a5e26aef985",
   "comment": "Teste2"
 }
