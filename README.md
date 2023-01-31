@@ -6,7 +6,11 @@ O Labook é uma rede social que permite aos usuários fazerem amizades, postarem
 
 ## Documentação da API
 
-A documentação da API está disponível no Postman: https://documenter.getpostman.com/view/15825728/TzXzEJ6G
+A documentação da API está disponível no Postman: https://documenter.getpostman.com/view/22369915/2s935itRdf
+
+## Deploy da aplicação
+
+A aplicação está disponível na render: https://lammar-labook27.onrender.com
 
 ## Como rodar o projeto
 
@@ -18,16 +22,18 @@ A documentação da API está disponível no Postman: https://documenter.getpost
 
 ### Instalação
 
-1. Clone este repositório
-`git clone https://github.com/seu-usuario/labook-backend.git`
-
-2. Entre na pasta do projeto e instale as dependências
- `cd labook-backend npm install`
-
-3. Crie um banco de dados MySQL
-4. Crie um arquivo `.env` na raiz do projeto e preencha com as informações do seu banco de dados MySQL
-5. Execute as migrations com `npm run migrations`
-6. Inicie o servidor `npm start`
+```bash
+# 1. Clone este repositório
+git clone https://github.com/seu-usuario/labook-backend.git
+# 2. Entre na pasta do projeto e instale as dependências
+cd labook-backend npm install
+# 3. Crie um banco de dados MySQL
+# 4. Crie um arquivo `.env` na raiz do projeto e preencha com as informações do seu banco de dados MySQL
+# 5. Execute as migrations com 
+npm run migrations
+# 6. Inicie o servidor 
+npm start
+```
 
 ## Endpoints
 
@@ -119,7 +125,7 @@ A documentação da API está disponível no Postman: https://documenter.getpost
 }
 ```
 
-## Tecnologias
+## Tecnologias utilizadas
 
 - Node.js
 - Typescript
@@ -130,4 +136,7 @@ A documentação da API está disponível no Postman: https://documenter.getpost
 - UUID
 - Ts-node-dev
 
+## Autor
 
+- [Gabriel Alisson](
+https://www.linkedin.com/in/gabriel--machado/)

@@ -7,18 +7,6 @@ class CreateTables extends Database {
       await Database.connection
         .raw(
           `
-
-   SET FOREIGN_KEY_CHECKS=0;
-
-   DROP TABLE IF EXISTS labook_users;
-   DROP TABLE IF EXISTS labook_posts;
-   DROP TABLE IF EXISTS labook_friends;
-   DROP TABLE IF EXISTS labook_likes;
-   DROP TABLE IF EXISTS labook_comments;
-   
-   SET FOREIGN_KEY_CHECKS=1;
-
-
       CREATE TABLE IF NOT EXISTS labook_users(
          id VARCHAR(255) PRIMARY KEY,
          name VARCHAR(255) NOT NULL,
