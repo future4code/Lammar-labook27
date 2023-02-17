@@ -74,4 +74,14 @@ export class UserDatabase extends Database {
       Database.connection.destroy();
     }
   };
+
+  public getUserByEmail = async (email: string): Promise<user> => {
+
+    const result = await Database.connection
+      .select("*")
+      .from(this.TABLE_USERS)
+      .where({ email });
+    return result[0];
+  }
+
 }

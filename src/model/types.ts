@@ -40,3 +40,7 @@ export type commentModel = {
   post_id: string;
   comment: string;
 };
+
+export type AuthenticationData = {
+  id: string;
+};

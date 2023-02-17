@@ -35,3 +35,8 @@ export interface CommentInputDTO {
     post_id: string;
     comment: string;
 }
+
+export interface LoginInputDTO {
+    email: string;
+    password: string;
+  }

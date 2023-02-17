@@ -1,18 +1,26 @@
 import { UserDatabase } from "../database/userDatabase";
 import { CustomError } from "../error/CustomError";
-import { FriendInputDTO, UserInputDTO } from "../model/inputsDTO";
+import { FriendInputDTO, LoginInputDTO, UserInputDTO } from "../model/inputsDTO";
 import { user, makeFriend, post } from "../model/types";
 import { generateId } from "../services/idGenerator";
+import bcrypt from "bcrypt";
+import { Authenticator } from "../services/Authenticator";
+import { Repositories } from "../functions/functions";
 
 const userDatabase = new UserDatabase();
+const authenticator = new Authenticator();
+const repositories = new Repositories();
 
 export class UserBusiness {
-
   async createUser(input: UserInputDTO): Promise<void> {
     try {
-      const userDatabase = new UserDatabase();
-
       const { name, email, password } = input;
+
+      const userExists = await userDatabase.getUserByEmail(email);
+
+      if (userExists) {
+        throw new Error("User already exists");
+      }
 
       if (!name || !email || !password) {
         let message = `"name", "email" and "password" must be provided'`;
@@ -30,13 +38,47 @@ export class UserBusiness {
 
       const id: string = generateId();
 
-      const user: user = { id, name, email, password };
+      const hashPassword = await bcrypt.hash(password, 10);
 
-      await userDatabase.createUser(user);
+      const newUser: user = {
+        id,
+        name,
+        email,
+        password: hashPassword,
+      };
+
+      await userDatabase.createUser(newUser);
     } catch (error: any) {
       throw new Error(error.message);
     }
   }
+
+  public login = async (input: LoginInputDTO) => {
+    try {
+      const {email, password} = input;
+      
+      const user = await userDatabase.getUserByEmail(email);
+
+      // const user = await repositories.userRepository.select("*").where({email});
+      
+      if(!user) {
+        throw new Error("Invalid credentials");
+      }
+      
+      const verifypass = await bcrypt.compare(password, user.password);
+
+      if(!verifypass) {
+        throw new Error("senha incorreta");
+      }
+
+      const token = authenticator.generateToken({ id: user.id });
+
+      return token;
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message);
+    }
+  }
+
 
   async makeFriends(input: FriendInputDTO): Promise<void> {
     try {

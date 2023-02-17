@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### get post by id
-GET http://localhost:3003/post/71b8d1cf-1fef-4f4e-939d-0a5e26aef
+GET http://localhost:3003/post/0a1a74fb-2a12-46af-bbde-c6fabec704e1
 
 ### make a friend
 POST http://localhost:3003/user/friend/

@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/userBusiness";
 import {
-  CommentInputDTO,
   FriendInputDTO,
-  LikeInputDTO,
-  PostInputDTO,
+  LoginInputDTO,
   UserInputDTO,
 } from "../model/inputsDTO";
 
@@ -22,6 +20,23 @@ export class UserController {
       await userBusiness.createUser(input);
 
       res.status(201).send({ message: "Success!", input });
+    } catch (error: any) {
+      res.status(400).send({ message: error.message });
+    }
+  }
+
+  async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
+
+      const input: LoginInputDTO = {
+        email,
+        password,
+      };
+
+      const token = await userBusiness.login(input);
+
+      res.status(200).send({ message: "Success!", token });
     } catch (error: any) {
       res.status(400).send({ message: error.message });
     }
